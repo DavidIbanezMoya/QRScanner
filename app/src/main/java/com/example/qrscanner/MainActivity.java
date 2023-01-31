@@ -1,4 +1,4 @@
-package com.example.qrscanner;
+package com.example.qrscanner;/*package com.example.qrscanner;
 
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +54,34 @@ public class MainActivity extends AppCompatActivity {
         mCodeScanner.releaseResources();
         super.onPause();
     }
+
+
+}*/
+
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+public class MainActivity extends AppCompatActivity {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.qr_scan);
+        Button scanBtn = findViewById(R.id.scanBtn);
+        Intent intent = new Intent(this, QRScan.class);
+        scanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
+            }
+        });
+    }
+
 
 
 }
