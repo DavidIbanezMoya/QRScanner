@@ -14,10 +14,6 @@ import com.google.zxing.Result;
 
 public class MainActivity extends AppCompatActivity {
     private CodeScanner mCodeScanner;
-
-    //todo Canviar el codi de MainActivity a QRSCan, fer que a MainActivity i hagi una TextView i
-    //todo un boto que ens redirigeixi al QRScan que hi ha ara al MainActivity
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +60,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -71,11 +68,17 @@ import androidx.core.content.ContextCompat;
 public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.qr_scan);
+        setContentView(R.layout.activity_main);
         Button scanBtn = findViewById(R.id.scanBtn);
+        TextView scanText = findViewById(R.id.scanText);
         Intent intent = new Intent(this, QRScan.class);
+
+        Bundle parametros = this.getIntent().getExtras();
+        if(parametros !=null){
+            String text = parametros.getString("Result");
+            scanText.setText(text);
+        }
         scanBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 startActivity(intent);
             }

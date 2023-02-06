@@ -39,6 +39,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
@@ -70,6 +71,7 @@ public class QRScan extends AppCompatActivity {
         }
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
+        TextView scanText = findViewById(R.id.scanText);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull final Result result) {
@@ -77,6 +79,10 @@ public class QRScan extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(QRScan.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("Result",result.getText().toString());
+                        //scanText.setText(result.getText());
+                        startActivity(intent);
                     }
                 });
             }
