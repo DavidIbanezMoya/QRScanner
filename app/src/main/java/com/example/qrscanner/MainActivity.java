@@ -58,9 +58,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -77,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
         if(parametros !=null){
             String text = parametros.getString("Result");
             scanText.setText(text);
+            Toast.makeText(this, text,  Toast.LENGTH_LONG).show();
+            //Log.v("Log1",text);
         }
+        //Log.v("Log2","Out");
         scanBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(intent);
